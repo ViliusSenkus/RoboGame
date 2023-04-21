@@ -20,7 +20,7 @@ code {
 table{
   margin: 50px auto;
   border-collapse: collapse;
-  background-color: antiquewhite;
+  background-color: rgb(229, 229, 229);
 }
 td{
   border: 1px solid black;
@@ -31,16 +31,27 @@ td{
   border: 1px solid lightgray;
 }
 .active{
-  background-color: green;
+  background-color: rgb(147, 241, 147);
   border: 2px solid black;
 }
 
 .color-red{
-  background-color: red;
+  background-color: rgb(254, 108, 108);
 }
 .color-green{
-  background-color: green;
+  background-color: rgb(147, 241, 147);
 }
 .color-blue{
-  background-color: blue;
+  background-color: rgb(106, 136, 237);
+}
+img{
+  width:30px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 1,
+  'opsz' 48
 }

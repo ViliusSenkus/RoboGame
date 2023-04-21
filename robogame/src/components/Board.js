@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import MainContext from "../context/MainContext";
+import Item from "../elements/Item";
 
 function Board() {
 
@@ -72,7 +73,8 @@ function Board() {
                         {field.map((value, index) => (
                               <tr key={index}>
                                     {value.map((value, index) => (
-                                          <td key={"td"+index} className={value}>           
+                                          <td key={"td"+index} className={value}>
+                                                {{Item} && <Item classes={value} />}
                                           </td>
                                     )
                                     )}
