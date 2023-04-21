@@ -1,4 +1,5 @@
 function Input(){
+      
       return(
             <form method="get">
                   <input type="text" name="pavadinimas"></input>
