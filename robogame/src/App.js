@@ -1,34 +1,50 @@
 import { useEffect, useState } from "react";
 
+//Contexts (parameters)
+import MainContext from './context/MainContext';
+
 // Components
+import Header from "./components/Header";
 import Board from "./components/Board";
+import Input from "./components/Input";
 import b1 from "./boardsData/b1.txt"
+
+
 
 function App() {
 
-  const [level, setLevel] = useState(0);
-  const [levelResult, setLevelResult] = useState(false);
-  const [fieldArray, setFieldArray] = useState([]);
+  const [field, setField] = useState([]);
+  // const [level, setLevel] = useState(0);
+  // const [levelResult, setLevelResult] = useState(false);
+  
 
-  // useEffect(()=>{
-  //   setLevel(level+1);
-  //   setLevelResult(false);
-  // }, levelResult)
+  const contextValues = {field, setField};
 
-  const file = "b" + level;
-function drawtable(file){
-  fetch(b1)
+  useEffect(()=>{
+    // setLevel(level+1);
+    // setLevelResult(false);
+    fetch(b1)
       .then(resp => resp.text())
-      .then(resp => resp.split(""))
-      .then(resp => setFieldArray(resp))
-      .then(localStorage.setItem("field", JSON.stringify(fieldArray)))
-  //   for(let x=0; x<15; x++){
-  //   }
-}
+      .then(resp => createBoardArray(resp))
+  }, []) //[levelResult]
+
+  function createBoardArray(data){
+    let linesArray = data.split("~");
+    for (let x in linesArray){
+      linesArray.splice(x,1,linesArray[x].split("-"));
+    }
+    setField(linesArray);
+    localStorage.setItem("field", JSON.stringify(field))
+
+  }
 
   return (
     <div>
-      <Board board={fieldArray}/>
+      <MainContext.Provider value={contextValues}>
+        <Header />
+        <Board />
+        <Input />
+      </MainContext.Provider>
     </div>
   );
 }

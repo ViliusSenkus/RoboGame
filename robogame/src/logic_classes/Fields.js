@@ -3,7 +3,9 @@ class Fields {
       positionY;
       color;
       activeField; // indicates if a field is avialable to position figure in to
-      properties=[this.positionX, this.positionY, this.color, this.activeField];
+      aim;
+      start;
+      properties=[this.positionX, this.positionY, this.color, this.activeField, this.aim, this.start];
 
       constructor(x, y, color = false, activeField = false){
             this.positionx = x;
