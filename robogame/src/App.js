@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Contexts (parameters)
 import MainContext from './context/MainContext';
@@ -40,11 +41,15 @@ function App() {
 
   return (
     <div>
-      <MainContext.Provider value={contextValues}>
-        <Header />
-        <Board />
-        <Input />
-      </MainContext.Provider>
+      <BrowserRouter>
+          <MainContext.Provider value={contextValues}>
+            <Header />
+            <Routes>  
+              <Route path="/" element={<Board />} />
+              <Route path="options" element={<Input />} />
+            </Routes>
+          </MainContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }
