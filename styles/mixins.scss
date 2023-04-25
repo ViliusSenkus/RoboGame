@@ -1,0 +1,6 @@
+@mixin button($bgColor: lightgrey, $border : 1px solid grey, $padding: 5px, $tAlign: center ){
+      background-color: $bgColor;
+      border: $border;
+      padding: $padding;
+      text-align: $tAlign;
+}

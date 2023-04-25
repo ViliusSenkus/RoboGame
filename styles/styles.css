@@ -1,0 +1,17 @@
+div {
+    color: red;
+}
+
+button {
+    background-color: lightgrey;
+    border: 1px solid grey;
+    padding: 5px;
+    text-align: center;
+}
+
+.other-button {
+    background-color: lightgreen;
+    border: green;
+    padding: 5px;
+    text-align: center;
+}
