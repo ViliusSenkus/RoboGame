@@ -15,4 +15,14 @@ class BoardController extends Controller
             return response('Nepavyko gauti lentelės', 500);
         }
     }
+
+    public function getLevel($id) {
+        try {
+            $text = "pasiekėme backendo funkciją " . $id;
+            return $text;
+        } catch(\Exception $e) {
+            return response('Nepavyko gauti funkicjos iš vidaus', 500);
+        }
+    }
+
 }

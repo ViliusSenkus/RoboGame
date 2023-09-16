@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import MainContext from "../context/MainContext";
 import Item from "../elements/Item";
+import { useParams } from "react-router-dom";
+import axios from 'axios';
 
 function Board() {
 
@@ -12,10 +14,17 @@ function Board() {
       const [fieldState, setFieldState] = useState(false)
       // const [playBoard, setPlayBoard]=useState("")
 
+      const {id} = useParams();
+
+      const [info, setInfo] = useState("Informacija siunčiama");
 
       useEffect(()=>{
-
-      },[fieldState])
+            axios.get("http://localhost:8000/api/level/" + id)
+            .then(resp => setInfo(resp.data))
+            .catch(error => setInfo("klaidele" + error))
+            .finally(console.log("axiosas baigėsi"));
+      
+      },[])
 
       
       function Field(){
@@ -88,7 +97,12 @@ function Board() {
 
       return (
         <div>
+            Border faile
+           
             <Field />
+            <h2>
+                  {info}
+            </h2>
         </div>
         )
 

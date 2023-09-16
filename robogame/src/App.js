@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Contexts (parameters)
 import MainContext from './context/MainContext';
 
+//Pages
+import Wellcome from "./pages/Wellcome";
+
 // Components
 import Header from "./components/Header";
 import Board from "./components/Board";
@@ -30,13 +33,14 @@ function App() {
   }, []) //[levelResult]
 
   function createBoardArray(data){
-    let linesArray = data.split("~");
+    let linesArray = data.split("~"); //spiltting data by board lines;
     for (let x in linesArray){
-      linesArray.splice(x,1,linesArray[x].split("-"));
+      linesArray.splice(x,1,linesArray[x].split("-")); //splitting in to fields
     }
+    
     setField(linesArray);
+    console.log(field);
     localStorage.setItem("field", JSON.stringify(field))
-
   }
 
   return (
@@ -44,8 +48,10 @@ function App() {
       <BrowserRouter>
           <MainContext.Provider value={contextValues}>
             <Header />
-            <Routes>  
-              <Route path="/" element={<Board />} />
+            <Routes>
+              <Route path="/" element={<Wellcome />} />
+              <Route path="/level/:id" element={<Board />} />  
+                    {/*Komponente reikės importuoti params iš react-router-dom ir const{id}=useParams(), axios.get("..."+id))  */}
               <Route path="options" element={<Input />} />
             </Routes>
           </MainContext.Provider>
