@@ -1,76 +1,47 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+import SelectableButtons from "./selectableButtons";
 import Functions from "../elements/Functions"
-function Input(){
-      
-      return(
-            <form>
-                  <div>
-                        <div>
-                              <div className="selection">
-                                    <span class="material-symbols-outlined">
-                                                arrow_upward
-                                    </span>  
-                                    <input type="radio" name="action" value="go" />
-                              </div>
-                              <div className="selection">
-                                    <span class="material-symbols-outlined">
-                                                arrow_top_right
-                                    </span>  
-                                    <input type="radio" name="action" value="right" />
-                              </div>
-                              <div className="selection">
-                                    <span class="material-symbols-outlined">
-                                                arrow_top_left
-                                    </span>  
-                              <input type="radio" name="action" value="left" />
-                              </div>
-                        </div>
-                        <div>
-                              <div className="selection color-red">
-                                    <input type="radio" name="color" value="red" />
-                              </div>
-                              <div className="selection color-green">
-                                    <input type="radio" name="color" value="green" />
-                              </div>
-                              <div className="selection color-blue">
-                              <     input type="radio" name="color" value="blue" />
-                              </div>
-                        </div>
-                        <div>
-                              <div className="selection">
-                                    <span class="material-symbols-outlined" style={{color:"red"}}>
-                                          format_paint
-                                    </span>
-                                    <input type="radio" name="recolor" value="red" />
-                              </div>
-                              <div className="selection">
-                                    <span class="material-symbols-outlined" style={{color:"green"}}>
-                                          format_paint
-                                    </span>
-                                    <input type="radio" name="recolor" value="green" />
-                              </div>
-                              <div className="selection">
-                                    <span class="material-symbols-outlined" style={{color:"blue"}}>
-                                          format_paint
-                                    </span>
-                                    <input type="radio" name="recolor" value="blue" />
-                              </div>
-                        </div>
-                        <div>
-                              <div className="selection">
-                                    F0
-                                    <input type="radio" name="function" value="f0" />
-                              </div>
-                              <div className="selection">
-                                    F1
-                                    <input type="radio" name="function" value="f1" />
-                              </div>
-                        </div>
-                  </div>
-                  <div>
-                        <Functions />
-                  </div>
-            </form>
-      )
+import valdymas from "./valdymas.txt"  //reik4s keisti į DB
+
+
+function Input() {
+
+   /*
+   Čia turi būti tokia logika:
+   1. gauname leistinus elementus iš DB;                       ---axios.get()
+   2. gauname leistinų funkcijų keikį ir jų elementų skaičių;  ---axios.get()
+   3. atvaizduojam elementus kaip mygtukus;                    ---<SelectableButtons> būtinas delete element ir   clear mygtukas
+   4. atvaizduojam tuščius funkcijų elementų laukelius;        ---<AvialableFunctions>
+         Mygtukų ir funkcijų elementų veikimas
+         a. pasirenkamas elementas į kūrį bus dedami mygtukai;
+         b. pasirenkami mygtukai automatiškai dedami į elementą;
+   5. Start mygtukas - paleidžia funkcijos vykdymą:
+         5.a. nuskaitomi elementai sudedami į masyvą/stringą/...
+   */
+
+
+   const [inputPanel, setInputPanel] = useState({});
+   // let arr = {colors:["r","m","z"], directions:["cw","ccw"],functions:2}
+   // console.log(JSON.stringify(arr));
+   useEffect(() => {
+      fetch(valdymas)
+         .then(resp => resp = (resp.text()))
+         .then(resp => setInputPanel(JSON.parse(resp)));
+   }, []);
+
+   console.log(inputPanel);
+
+   return (
+      <>
+         <h2>
+            &lt;Input&gt; komponentas
+         </h2>
+         <SelectableButtons inputPanel={inputPanel} />
+         <Functions />
+      </>
+   )
 }
 
 export default Input

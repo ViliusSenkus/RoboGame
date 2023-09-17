@@ -4,6 +4,7 @@ import axios from 'axios';
 
 //Components
 import Board from "../components/Board";
+import Input from "../components/Input";
 
 function Level() {
 
@@ -43,6 +44,7 @@ function Level() {
                         <code>{boardData}</code>
                   </p>
                   <Board boardData={boardData} setBoardData={setBoardData} />
+                  <Input />
             </>
       )
 }

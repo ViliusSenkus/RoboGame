@@ -75,7 +75,7 @@ function Board(props) {
       <>
          <div>
             <h2>
-               Border komponento pradžia
+               &lt;Border&gt; komponentas
             </h2>
 
             <table className="board">
