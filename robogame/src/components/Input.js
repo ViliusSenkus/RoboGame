@@ -25,20 +25,20 @@ function Input() {
    const [inputPanel, setInputPanel] = useState({});
    // let arr = {colors:["r","m","z"], directions:["cw","ccw"],functions:2}
    // console.log(JSON.stringify(arr));
+   
    useEffect(() => {
       fetch(valdymas)
          .then(resp => resp = (resp.text()))
-         .then(resp => setInputPanel(JSON.parse(resp)));
+         .then(resp => setInputPanel(JSON.parse(resp)))
+         .catch(error => console.log("inputPanel paemimo klaida", error))
    }, []);
-
-   console.log(inputPanel);
 
    return (
       <>
          <h2>
             &lt;Input&gt; komponentas
          </h2>
-         <SelectableButtons inputPanel={inputPanel} />
+         {inputPanel && <SelectableButtons inputPanel={inputPanel} />}
          <Functions />
       </>
    )

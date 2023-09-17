@@ -25,25 +25,6 @@ function App() {
 
   const contextValues = {field, setField};
 
-  useEffect(()=>{
-    // setLevel(level+1);
-    // setLevelResult(false);
-    fetch(b1)
-      .then(resp => resp.text())
-      .then(resp => createBoardArray(resp))
-  }, []) //[levelResult]
-
-  function createBoardArray(data){
-    let linesArray = data.split("~"); //spiltting data by board lines;
-    for (let x in linesArray){
-      linesArray.splice(x,1,linesArray[x].split("-")); //splitting in to fields
-    }
-    
-    setField(linesArray);
-    console.log(field);
-    localStorage.setItem("field", JSON.stringify(field))
-  }
-
   return (
     <div>
       <BrowserRouter>

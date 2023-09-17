@@ -80,7 +80,7 @@ function Board(props) {
 
             <table className="board">
                <tbody>
-                  {boardData.map((value, index) => (
+                  {boardData && boardData.map((value, index) => (
                      <tr key={index}>
                         {value.map((value, index) => (
                            <td key={"td" + index} className={value}>

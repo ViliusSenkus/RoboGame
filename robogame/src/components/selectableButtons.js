@@ -1,10 +1,12 @@
 function SelectableButtons(props) {
 
    const data = props.inputPanel;
+   console.log("propsai", data)
 
    //konvertuojam data duomenis į ikonų nuorodas:
 
-   for (const [key, value] of Object.entries(data)) {
+
+   for (const [value] of Object.entries(data)) {
       for (let i = 0; i < value.length; i++) {
          switch (value[i]) {
 
@@ -29,6 +31,8 @@ function SelectableButtons(props) {
             case "cw":
                value[i] = "arrow_top_right";
                break;
+            default:
+               value[i]=value;
          }
       }
    }
@@ -44,7 +48,7 @@ function SelectableButtons(props) {
          <h5>
             Actions
          </h5>
-         {data.directions.map((value, index) => (
+         {data.directions && data.directions.map((value, index) => (
             <div key={index}>
                <div className="selection">
                   <span class="material-symbols-outlined">
@@ -57,7 +61,7 @@ function SelectableButtons(props) {
          <h5>
             Colors
          </h5>
-         {data.colors.map((value, index) => (
+         {data.colors && data.colors.map((value, index) => (
             <div key={index}>
                <div className={`selection color-${value}`}>
                   <input type="radio" name="color" value={value} />
@@ -67,7 +71,7 @@ function SelectableButtons(props) {
          <h5>
             Painters
          </h5>
-         {data.painters.map((value, index) => (
+         {data.painters && data.painters.map((value, index) => (
             <div key={index}>
                <div className="selection">
                   <span class="material-symbols-outlined" style={{ color: `${value}` }}>
@@ -80,7 +84,7 @@ function SelectableButtons(props) {
          <h5>
             Functions
          </h5>
-         {data.functions.map((value, index) => (
+         {data.functions && data.functions.map((value, index) => (
             <div key={index}>
                <div className="selection">
                   F{value}
