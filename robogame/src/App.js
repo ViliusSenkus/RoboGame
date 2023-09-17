@@ -6,10 +6,11 @@ import MainContext from './context/MainContext';
 
 //Pages
 import Wellcome from "./pages/Wellcome";
+import E404 from "./pages/E404";
+import Level from "./pages/Level";
 
 // Components
 import Header from "./components/Header";
-import Board from "./components/Board";
 import Input from "./components/Input";
 import b1 from "./boardsData/b1.txt"
 
@@ -50,9 +51,9 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={<Wellcome />} />
-              <Route path="/level/:id" element={<Board />} />  
-                    {/*Komponente reikės importuoti params iš react-router-dom ir const{id}=useParams(), axios.get("..."+id))  */}
+              <Route path="/level/:level" element={<Level />} />  
               <Route path="options" element={<Input />} />
+              <Route path = "*" element={<E404 />} />
             </Routes>
           </MainContext.Provider>
       </BrowserRouter>
