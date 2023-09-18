@@ -11,7 +11,7 @@ import Level from "./pages/Level";
 
 // Components
 import Header from "./components/Header";
-import Input from "./components/Input";
+import Input from "./components/Options";
 import b1 from "./boardsData/b1.txt"
 
 

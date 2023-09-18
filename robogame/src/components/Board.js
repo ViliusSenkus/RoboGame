@@ -1,31 +1,13 @@
-import { useState, useEffect, useContext } from "react";
-// import MainContext from "../context/MainContext";
 import Item from "../elements/Item";
 
 function Board(props) {
 
-   // const [positionX, setPositionX] = useState("");
-   // const [positionY, setPositionY] = useState("");
-   // const [color, setColor] = useState(false);
-   // const [boardData, setBoardData] = useState("")
-   // const [playBoard, setPlayBoard]=useState("")
+   let board = props.board;
 
-
-
-
-
-   // useEffect(()=>{
-
-
-   // },[fieldState])
-
-   let boardData = props.boardData;
-
-
-   for (let index in boardData) {
-      for (let i in boardData[index]) {
-         if (boardData[index][i].length > 5) break; // nedidelė apsauga
-         boardData[index].splice(i, 1, codeToClasses(boardData[index][i]));
+   for (let index in board) {
+      for (let i in board[index]) {
+         if (board[index][i].length > 5) break; // nedidelė apsauga
+         board[index].splice(i, 1, codeToClasses(board[index][i]));
       }
    }
 
@@ -68,9 +50,7 @@ function Board(props) {
 
       return result;
    }
-
-   console.log(props.boardData)
-
+   
    return (
       <>
          <div>
@@ -80,7 +60,7 @@ function Board(props) {
 
             <table className="board">
                <tbody>
-                  {boardData && boardData.map((value, index) => (
+                  {board && board.map((value, index) => (
                      <tr key={index}>
                         {value.map((value, index) => (
                            <td key={"td" + index} className={value}>

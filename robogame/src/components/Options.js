@@ -1,27 +1,27 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 
+import SelectableButtons from "./selectableButtons";
+import valdymas from "./valdymas.txt"  //reik4s keisti į DB
 
+   /*
+   Čia turi būti tokia logika:
+   1. gauname leistinus elementus iš DB;                       ---axios.get()
+   2. gauname leistinų funkcijų keikį ir jų elementų skaičių;  ---axios.get()
+   3. atvaizduojam elementus kaip mygtukus;                    ---<SelectableButtons> būtinas delete element ir   clear mygtukas
+   4. atvaizduojam tuščius funkcijų elementų laukelius;        ---<AvialableFunctions>
+         Mygtukų ir funkcijų elementų veikimas
+         a. pasirenkamas elementas į kūrį bus dedami mygtukai;
+         b. pasirenkami mygtukai automatiškai dedami į elementą;
+   5. Start mygtukas - paleidžia funkcijos vykdymą:
+         5.a. nuskaitomi elementai sudedami į masyvą/stringą/...
+   */
 
+function Options(props) {
+   console.log(props.options);
+   const data = JSON.parse(props.options);
 
-
-
-// Trynimui.
-
-
-
-
-
-
-
-
-
-
-
-function SelectableButtons(props) {
-
-   const data = props.inputPanel;
-   console.log("propsai", data)
-
-   //konvertuojam data duomenis į ikonų nuorodas:
+   // konvertuojam data duomenis į ikonų nuorodas:
 
 
    for (const [value] of Object.entries(data)) {
@@ -55,11 +55,14 @@ function SelectableButtons(props) {
       }
    }
 
+   let colors = props.options.colors
+
    //cia reikalinga funkcija nuskaitanti paklikinim1 ant mygtuko ir perduodanti jo duomenis i virsu <Input>
 
    return (
       <>
-         <h3>
+      Labas
+         {/* <h3>
             &lt;SelectableButtons&gt; komponentas
          </h3>
          turi būti kaip elementas.
@@ -109,9 +112,9 @@ function SelectableButtons(props) {
                   <input type="radio" name="function" value={`f${value}`} />
                </div>
             </div>
-         ))}
+         ))} */}
       </>
    )
 }
 
-export default SelectableButtons
+export default Options

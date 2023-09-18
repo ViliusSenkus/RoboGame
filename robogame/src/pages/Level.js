@@ -4,51 +4,74 @@ import axios from 'axios';
 
 //Components
 import Board from "../components/Board";
-import Input from "../components/Input";
-import Solution from "../components/Solution";
+import Options from "../components/Options";
+import Functions from "../components/Functions";
 
 function Level() {
 
       const { level } = useParams();
 
-      const [initialBoard, setInitialBoard] = useState("");
-      const [boardData, setBoardData] = useState([]);
+      const [board, setBoard] = useState([]);
+      const [options, setOptions] = useState();
+      const [functions, setFunctions] = useState();
 
-      
+
       useEffect(() => {
             axios.get("http://localhost:8000/api/level/" + level)
                   .then(resp => {
-                        const data = resp.data;
-                        
-                        setInitialBoard(data);
-                        toArray(data);
+                        const data = resp.data; //data - visa informacija apie lygį
                         localStorage.setItem("board", JSON.stringify(data));
+                        spreadData(data); //šaukiam funkciją duomenų išskirstymui ir kintamūjų priskyrimui.
                   })
-                  .catch(error => setInitialBoard("klaidele" + error))
+                  .catch(error => ("klaidele" + error))
                   .finally(console.log("exios request in Level component done"));
-      },[])
+      }, [])
 
-      function toArray(data) {
-            let linesArray = data.split("~"); //spiltting data by board lines;
+      function spreadData(data) {
+            // Žaidimo lauko duomenų apdirbimas
+            let linesArray = data.fields_list.split("~"); //spiltting data by board lines;
             for (let x in linesArray) {
                   linesArray.splice(x, 1, linesArray[x].split("-")); //splitting in to fields
             }
-            setBoardData(linesArray);
+            setBoard(linesArray);
+
+            //Galimų komandų duomenų apdirbimas
+            setOptions(data.options);
+
+            //Funkcijų formavimo laukų ir langelių skaičiaus pavertimas masyvu
+            const numberOfFunctions = data.functions.split(",");
+            setFunctions(numberOfFunctions);
+            // let fnct = [];
+            // for (let i=0; i<numberOfFunctions.length; i++){
+            //       fnct.push(1);
+            //       for( let y=0; y<numberOfFunctions[i]; y++)
+            //       fnct[i].push(1);
+            // };
+            // console.log("jj",fnct);
       }
 
       return (
             <>
                   <p>
-                        žaidimo lentos duomenys iš DB, išsaugomi localStorage, kan nereikėtų pakartotinai kreiptis į backą/serverį <br />
-                        { initialBoard ? (<code>{initialBoard}</code>) : <div>Loading</div>}
+                        pirminiai lygio duomenys iš DB, išsaugomi localStorage, kad nereikėtų pakartotinai kreiptis į backą/serverį <br />
+
                   </p>
                   <p>
-                        boardData kintamojo reikšmė, perduodama kaip propsas į Board <br />
-                        { boardData && (<code>{boardData}</code>)}
+                        <b>useState(board) </b> kintamojo reikšmė, perduodama kaip propsas į &lt;Board&gt; <br />
+                        {board ? (<code>{board}</code>) : <div>Loading Board</div>}
                   </p>
-                  <Board boardData={boardData} setBoardData={setBoardData} />
-                  <Input />
-                  <Solution />
+                  <p>
+                        <b>useState(options) </b> kintamojo reikšmė, perduodama kaip Stringinis propsas į &lt;Options&gt; <br />
+                        {/* {options ? (<code>{options}</code>) : <div>Loading Options</div>} */}
+                  </p>
+                  <p>
+                        <b>useState(function) </b> kintamojo reikšmė, perduodama kaip propsas į &lt;Functions&gt; <br />
+                        {functions ? (<code>{functions}</code>) : <div>Loading Board</div>}
+                  </p>
+                  <Board board={board} setBoard={setBoard} />
+                  <Options options={options} />
+                  {/* colors={colors} directions={directions} painters={painters} functions={fnct} */}
+                  <Functions functions={functions} />
             </>
       )
 }

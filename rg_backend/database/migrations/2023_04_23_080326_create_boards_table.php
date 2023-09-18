@@ -16,6 +16,10 @@ return new class extends Migration
             $table->longText('fields_list');
             $table->string('options', 255);
             $table->string('functions', 255);
+            
+            $table->timestamps();                  //date record created or edited at
+            $table->softDeletes()->invisible();    //date record deleted at
+
         });
     }
 
