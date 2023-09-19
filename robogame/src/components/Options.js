@@ -18,59 +18,34 @@ import valdymas from "./valdymas.txt"  //reik4s keisti į DB
 */
 
 function Options(props) {
-   console.log(props);
-   // const colors = props.colors;
-   // const directions = props.directions;
-   // const functions = props.fnct;
-   // const painters = props.painters;
-   // console.log(colors, directions,functions,painters);
+   const data = props.options;
+   console.log("perduotos opcijos",data);
+
+   const [colors, setColors] = useState([]);
+   const [directions, setDirections] = useState([]);
+   const [functions, setFunctions] = useState([]);
+   const [painters, setPainters] = useState([]);
    
+  useEffect(()=>{
+   if (data) {
+      setColors(data.colors);
+      setDirections(data.directions);
+      setFunctions(data.functions);
+      setPainters(data.painters);
+   }
+   
+  },[])
 
-   // konvertuojam data duomenis į ikonų nuorodas:
-   // useEffect(() => {
-   //    for (const [value] of Object.entries(data)) {
-   //       console.log(value);
-   //       for (let i = 0; i < value.length; i++) {
-   //          switch (value[i]) {
-
-   //             //colors
-   //             case "r":
-   //                value[i] = "red";
-   //                break;
-   //             case "g":
-   //                value[i] = "green";
-   //                break;
-   //             case "b":
-   //                value[i] = "blue";
-   //                break;
-
-   //             //painters
-   //             case "fw":
-   //                value[i] = "arrow_upward";
-   //                break;
-   //             case "ccw":
-   //                value[i] = "arrow_top_left";
-   //                break;
-   //             case "cw":
-   //                value[i] = "arrow_top_right";
-   //                break;
-   //             default:
-   //                value[i] = value;
-   //          }
-   //       }
-   //    }
-   // }, [])
-
-
-
-   // let colors = props.options.colors
-
-   //cia reikalinga funkcija nuskaitanti paklikinim1 ant mygtuko ir perduodanti jo duomenis i virsu <Input>
+  //cia reikalinga funkcija nuskaitanti paklikinim1 ant mygtuko ir perduodanti jo duomenis i virsu <Input>
 
    return (
       <>
          Opcijos
-         {/* {console.log(data)}
+         {/* {colors.map((value, index)=>(
+            <div key={index}>
+               {value}
+            </div>
+         ))} */}
          Options Propsu vieta
          <h3>
             &lt;SelectableButtons&gt; komponentas
@@ -79,7 +54,7 @@ function Options(props) {
          <h5>
             Actions
          </h5>
-         {data.directions && data.directions.map((value, index) => (
+         {directions && directions.map((value, index) => (
             <div key={index}>
                <div className="selection">
                   <span class="material-symbols-outlined">
@@ -92,7 +67,7 @@ function Options(props) {
          <h5>
             Colors
          </h5>
-         {data.colors && data.colors.map((value, index) => (
+         {colors && colors.map((value, index) => (
             <div key={index}>
                <div className={`selection color-${value}`}>
                   <input type="radio" name="color" value={value} />
@@ -102,7 +77,7 @@ function Options(props) {
          <h5>
             Painters
          </h5>
-         {data.painters && data.painters.map((value, index) => (
+         {painters && painters.map((value, index) => (
             <div key={index}>
                <div className="selection">
                   <span class="material-symbols-outlined" style={{ color: `${value}` }}>
@@ -115,14 +90,14 @@ function Options(props) {
          <h5>
             Functions
          </h5>
-         {data.functions && data.functions.map((value, index) => (
+         {functions && functions.map((value, index) => (
             <div key={index}>
                <div className="selection">
                   F{value}
                   <input type="radio" name="function" value={`f${value}`} />
                </div>
             </div>
-         ))} */}
+         ))}
       </>
    )
 }
