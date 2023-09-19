@@ -20,7 +20,7 @@ return(
                            </td>
                      </tr>
                   )
-                  ) : "Kraunasi"}
+                  ) : "Funkcijos Kraunasi"}
                </tbody>
             </table>
 

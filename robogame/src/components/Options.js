@@ -18,8 +18,12 @@ import valdymas from "./valdymas.txt"  //reik4s keisti į DB
 */
 
 function Options(props) {
-   // const data = props.options;
-   console.log(props.colors);
+   console.log(props);
+   // const colors = props.colors;
+   // const directions = props.directions;
+   // const functions = props.fnct;
+   // const painters = props.painters;
+   // console.log(colors, directions,functions,painters);
    
 
    // konvertuojam data duomenis į ikonų nuorodas:
@@ -65,6 +69,7 @@ function Options(props) {
 
    return (
       <>
+         Opcijos
          {/* {console.log(data)}
          Options Propsu vieta
          <h3>

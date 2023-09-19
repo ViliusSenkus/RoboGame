@@ -41,10 +41,10 @@ function Level() {
             //Galimų komandų duomenų apdirbimas
             setOptions(JSON.parse(data.options));
             setColors(options.colors);
-            setDirections = options.directions;
-            setPainters = options.painters;
-            setFnct = options.fnct;
-            console.log(options.directions)
+            setDirections(options.directions);
+            setPainters(options.painters);
+            setFnct(options.functions);
+            console.log(colors, painters, directions, fnct);
 
 
             //Funkcijų formavimo laukų ir langelių skaičiaus pavertimas masyvu
@@ -71,7 +71,7 @@ function Level() {
                   </p>
                   <p>
                         <b>useState(options) </b> kintamojo reikšmė, perduodama kaip Stringinis propsas į &lt;Options&gt; <br />
-                        {options ? (<code>{options.directions}</code>) : <div>Loading Options</div>}
+                        {options ? (<code>{colors},{directions},{painters},{fnct}</code>) : <div>Loading Options</div>}
                   </p>
                   <p>
                         <b>useState(function) </b> kintamojo reikšmė, perduodama kaip propsas į &lt;Functions&gt; <br />
