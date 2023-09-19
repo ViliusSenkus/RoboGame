@@ -14,6 +14,10 @@ function Level() {
       const [board, setBoard] = useState([]);
       const [options, setOptions] = useState();
       const [functions, setFunctions] = useState();
+      const [colors, setColors] = useState();
+      const [directions, setDirections] = useState();
+      const [painters, setPainters] = useState();
+      const [fnct, setFnct] = useState();
 
 
       useEffect(() => {
@@ -23,8 +27,7 @@ function Level() {
                         localStorage.setItem("board", JSON.stringify(data));
                         spreadData(data); //šaukiam funkciją duomenų išskirstymui ir kintamūjų priskyrimui.
                   })
-                  .catch(error => ("klaidele" + error))
-                  .finally(console.log("exios request in Level component done"));
+                  .catch(error => ("klaidele" + error));
       }, [])
 
       function spreadData(data) {
@@ -36,7 +39,13 @@ function Level() {
             setBoard(linesArray);
 
             //Galimų komandų duomenų apdirbimas
-            setOptions(data.options);
+            setOptions(JSON.parse(data.options));
+            setColors(options.colors);
+            setDirections = options.directions;
+            setPainters = options.painters;
+            setFnct = options.fnct;
+            console.log(options.directions)
+
 
             //Funkcijų formavimo laukų ir langelių skaičiaus pavertimas masyvu
             const numberOfFunctions = data.functions.split(",");
@@ -62,15 +71,14 @@ function Level() {
                   </p>
                   <p>
                         <b>useState(options) </b> kintamojo reikšmė, perduodama kaip Stringinis propsas į &lt;Options&gt; <br />
-                        {/* {options ? (<code>{options}</code>) : <div>Loading Options</div>} */}
+                        {options ? (<code>{options.directions}</code>) : <div>Loading Options</div>}
                   </p>
                   <p>
                         <b>useState(function) </b> kintamojo reikšmė, perduodama kaip propsas į &lt;Functions&gt; <br />
                         {functions ? (<code>{functions}</code>) : <div>Loading Board</div>}
                   </p>
                   <Board board={board} setBoard={setBoard} />
-                  <Options options={options} />
-                  {/* colors={colors} directions={directions} painters={painters} functions={fnct} */}
+                  <Options colors={colors} directions={directions} painters={painters} functions={fnct} />
                   <Functions functions={functions} />
             </>
       )

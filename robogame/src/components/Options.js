@@ -4,65 +4,70 @@ import { useEffect, useState } from "react";
 import SelectableButtons from "./selectableButtons";
 import valdymas from "./valdymas.txt"  //reik4s keisti į DB
 
-   /*
-   Čia turi būti tokia logika:
-   1. gauname leistinus elementus iš DB;                       ---axios.get()
-   2. gauname leistinų funkcijų keikį ir jų elementų skaičių;  ---axios.get()
-   3. atvaizduojam elementus kaip mygtukus;                    ---<SelectableButtons> būtinas delete element ir   clear mygtukas
-   4. atvaizduojam tuščius funkcijų elementų laukelius;        ---<AvialableFunctions>
-         Mygtukų ir funkcijų elementų veikimas
-         a. pasirenkamas elementas į kūrį bus dedami mygtukai;
-         b. pasirenkami mygtukai automatiškai dedami į elementą;
-   5. Start mygtukas - paleidžia funkcijos vykdymą:
-         5.a. nuskaitomi elementai sudedami į masyvą/stringą/...
-   */
+/*
+Čia turi būti tokia logika:
+1. gauname leistinus elementus iš DB;                       ---axios.get()
+2. gauname leistinų funkcijų keikį ir jų elementų skaičių;  ---axios.get()
+3. atvaizduojam elementus kaip mygtukus;                    ---<SelectableButtons> būtinas delete element ir   clear mygtukas
+4. atvaizduojam tuščius funkcijų elementų laukelius;        ---<AvialableFunctions>
+      Mygtukų ir funkcijų elementų veikimas
+      a. pasirenkamas elementas į kūrį bus dedami mygtukai;
+      b. pasirenkami mygtukai automatiškai dedami į elementą;
+5. Start mygtukas - paleidžia funkcijos vykdymą:
+      5.a. nuskaitomi elementai sudedami į masyvą/stringą/...
+*/
 
 function Options(props) {
-   console.log(props.options);
-   const data = JSON.parse(props.options);
+   // const data = props.options;
+   console.log(props.colors);
+   
 
    // konvertuojam data duomenis į ikonų nuorodas:
+   // useEffect(() => {
+   //    for (const [value] of Object.entries(data)) {
+   //       console.log(value);
+   //       for (let i = 0; i < value.length; i++) {
+   //          switch (value[i]) {
+
+   //             //colors
+   //             case "r":
+   //                value[i] = "red";
+   //                break;
+   //             case "g":
+   //                value[i] = "green";
+   //                break;
+   //             case "b":
+   //                value[i] = "blue";
+   //                break;
+
+   //             //painters
+   //             case "fw":
+   //                value[i] = "arrow_upward";
+   //                break;
+   //             case "ccw":
+   //                value[i] = "arrow_top_left";
+   //                break;
+   //             case "cw":
+   //                value[i] = "arrow_top_right";
+   //                break;
+   //             default:
+   //                value[i] = value;
+   //          }
+   //       }
+   //    }
+   // }, [])
 
 
-   for (const [value] of Object.entries(data)) {
-      for (let i = 0; i < value.length; i++) {
-         switch (value[i]) {
 
-            //colors
-            case "r":
-               value[i] = "red";
-               break;
-            case "g":
-               value[i] = "green";
-               break;
-            case "b":
-               value[i] = "blue";
-               break;
-
-            //painters
-            case "fw":
-               value[i] = "arrow_upward";
-               break;
-            case "ccw":
-               value[i] = "arrow_top_left";
-               break;
-            case "cw":
-               value[i] = "arrow_top_right";
-               break;
-            default:
-               value[i]=value;
-         }
-      }
-   }
-
-   let colors = props.options.colors
+   // let colors = props.options.colors
 
    //cia reikalinga funkcija nuskaitanti paklikinim1 ant mygtuko ir perduodanti jo duomenis i virsu <Input>
 
    return (
       <>
-      Labas
-         {/* <h3>
+         {/* {console.log(data)}
+         Options Propsu vieta
+         <h3>
             &lt;SelectableButtons&gt; komponentas
          </h3>
          turi būti kaip elementas.
