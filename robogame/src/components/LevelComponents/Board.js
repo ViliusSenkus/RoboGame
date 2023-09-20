@@ -1,15 +1,21 @@
-import Item from "../elements/Item";
+import { useContext, useEffect } from "react";
+import Item from "../../elements/Item";
+import MainContext from "../../context/MainContext";
 
-function Board(props) {
-
-   let board = props.board;
-
-   for (let index in board) {
+function Board() {
+   
+   const {board, setBoard} = useContext(MainContext);
+   
+   useEffect(()=>{
+      
+      for (let index in board) {
       for (let i in board[index]) {
          if (board[index][i].length > 5) break; // nedidelė apsauga
          board[index].splice(i, 1, codeToClasses(board[index][i]));
       }
    }
+   },[])
+   
 
    function codeToClasses(data) {
       const element = (data.split(""));
@@ -54,9 +60,9 @@ function Board(props) {
    return (
       <>
          <div>
-            <h2>
-               &lt;Border&gt; komponentas
-            </h2>
+            <h3>
+               &lt;Border&gt; component
+            </h3>
 
             <table className="board">
                <tbody>

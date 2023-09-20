@@ -12,6 +12,7 @@ return(
             <Link to = "/highscores" > High Scores </Link>
             <Link to = "/login" > Log in </Link>
             <Link to = "/signin" > Sign in </Link>
+            <Link to = "/settings" > Settings </Link>
       </nav>
       </>
 )

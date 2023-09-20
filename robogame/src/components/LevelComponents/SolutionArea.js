@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function Functions(props){
+function SolutionArea(props){
       
       let data = props.functions;
       // useEffect(()=>{
@@ -28,4 +28,4 @@ return(
 )
 }
 
-export default Functions
+export default SolutionArea

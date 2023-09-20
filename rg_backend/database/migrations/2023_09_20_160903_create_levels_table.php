@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->id();
-            $table->longText('fields_list');
-            $table->string('options', 255);
+            $table->longText('board');
+            $table->string('colors', 255);
+            $table->string('painters', 255);
+            $table->string('directions', 255);
             $table->string('functions', 255);
+            $table->string('solutions', 255);
             
             $table->timestamps();                  //date record created or edited at
             $table->softDeletes()->invisible();    //date record deleted at
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boards');
+        Schema::dropIfExists('levels');
     }
 };

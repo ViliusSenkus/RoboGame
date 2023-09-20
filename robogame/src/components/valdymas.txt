@@ -1,1 +1,0 @@
-{"colors":["r","g","b"],"directions":["fw","cw","ccw"],"functions":[1,2],"painters":["r","g","b"]}

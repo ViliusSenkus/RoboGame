@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Board;
+use App\Models\Level;
 use Illuminate\Http\Request;
 
-class BoardController extends Controller 
+class LevelController extends Controller 
 {
 
     public function index() {
         try {
-            return Board::all();
+            return Level::all();
         } catch(\Exception $e) {
             return response('Nepavyko gauti lentelės'.$e, 500);
         }
@@ -19,7 +19,7 @@ class BoardController extends Controller
     public function getLevel($id) {
         $fieldArray = [];
         try {
-            return Board::find($id);
+            return Level::find($id);
             // $fileContents = file_get_contents(__DIR__ . '/../../../storage/b'.$id.'.txt');
             // // $linesArrays = explode("~", $fileContents);
             // // foreach ($linesArrays as $line){

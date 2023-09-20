@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Wellcome() {
+function Home() {
    return (
       <>
          <h2>
@@ -11,4 +11,4 @@ function Wellcome() {
    );
 }
 
-export default Wellcome
+export default Home
