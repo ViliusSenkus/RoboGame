@@ -2,69 +2,75 @@ import { useContext, useEffect } from "react";
 import Item from "../../elements/Item";
 import MainContext from "../../context/MainContext";
 
-function Board() {
-   
-   const {board, setBoard} = useContext(MainContext);
-   
-   useEffect(()=>{
-      
-      for (let index in board) {
-      for (let i in board[index]) {
-         if (board[index][i].length > 5) break; // nedidelė apsauga
-         board[index].splice(i, 1, codeToClasses(board[index][i]));
+
+function Board(props) {
+
+   // const { board, setBoard } = useContext(MainContext)
+   // setBoard(props.board);
+
+   if (board !== "") {
+      let arr = board.split("~");
+      arr.map((value, index) => {
+         arr[index] = value.split("-")
+      })
+      for (let index in arr) {
+         for (let i in arr[index]) {
+            if (arr[index][i].length > 5) break; // nedidelė apsauga
+            arr[index].splice(i, 1, codeToClasses(arr[index][i]));
+         }
       }
+      setBoard(arr);
    }
-   },[])
-   
 
-   function codeToClasses(data) {
-      const element = (data.split(""));
-      let result = "";
+   // function codeToClasses(data) {
+   //    const element = (data.split(""));
+   //    let result = "";
 
-      switch (element[0]) {
-         case "0":
-            result = " inactive";
-            break
-         case "1":
-            result = " active";
-            break;
-      }
+   //    switch (element[0]) {
+   //       case "0":
+   //          result = " inactive";
+   //          break
+   //       case "1":
+   //          result = " active";
+   //          break;
+   //    }
 
-      switch (element[1]) {
-         case "r":
-            result += " color-red";
-            break;
-         case "g":
-            result += " color-green";
-            break;
-         case "b":
-            result += " color-blue";
-            break;
-      }
+   //    switch (element[1]) {
+   //       case "r":
+   //          result += " color-red";
+   //          break;
+   //       case "g":
+   //          result += " color-green";
+   //          break;
+   //       case "b":
+   //          result += " color-blue";
+   //          break;
+   //    }
 
-      switch (element[2]) {
-         case "t":
-            result += " aim";
-            break;
-         case "s":
-            result += " start";
-            break;
-         case "f":
-            result += "";
-            break;
-      }
+   //    switch (element[2]) {
+   //       case "t":
+   //          result += " aim";
+   //          break;
+   //       case "s":
+   //          result += " start";
+   //          break;
+   //       case "f":
+   //          result += "";
+   //          break;
+   //    }
 
-      return result;
-   }
-   
+   //    return result;
+   // }
+
    return (
       <>
          <div>
             <h3>
-               &lt;Border&gt; component
+               &lt;Board&gt; component
             </h3>
+            {board}
 
-            <table className="board">
+            {/* <table className="board">
                <tbody>
                   {board && board.map((value, index) => (
                      <tr key={index}>
@@ -78,7 +84,7 @@ function Board() {
                   )
                   )}
                </tbody>
-            </table>
+            </table> */}
 
          </div>
       </>

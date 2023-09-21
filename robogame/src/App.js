@@ -21,13 +21,15 @@ function App() {
 
   //useState()
   const [user, setUser] = useState(false);
-  const [colors, setColors] = useState([]);
-  const [directions, setDirections] = useState([]);
-  const [functions, setFunctions] = useState([]);
-  const [painters, setPainters] = useState([]);
-  
+  const [board, setBoard] = useState();
+  const [colors, setColors] = useState();
+  const [directions, setDirections] = useState();
+  const [functions, setFunctions] = useState();
+  const [painters, setPainters] = useState();
+  const [solutions, setSolutions] = useState();
+
   //useContext()
-  const contextValues = {colors, setColors, directions, setDirections, functions, setFunctions,painters, setPainters};
+  const contextValues = {board, setBoard, colors, setColors, directions, setDirections, functions, setFunctions,painters, setPainters, solutions, setSolutions};
 
   useEffect(()=>{
     //axios request is temporary and bad, just to remember that it is needed here.
