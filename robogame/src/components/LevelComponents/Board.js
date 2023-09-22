@@ -66,14 +66,6 @@ function Board(props) {
             <h3>
                &lt;Board&gt; component
             </h3>
-           
-            {/* <div>
-               {arr.map((value, index) => (
-                  <div key={index}>
-                     {value}
-                  </div>
-               ))}
-            </div> */}
             <table className="board">
                <tbody>
                   {arr.map((value, index) => (
@@ -89,7 +81,6 @@ function Board(props) {
                   )}
                </tbody>
             </table>
-
          </div>
       </>
    )

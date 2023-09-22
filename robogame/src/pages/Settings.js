@@ -66,7 +66,7 @@ function Settings() {
          {painters && painters.map((value, index) => (
             <div key={index}>
                <div className="selection">
-                  <span class="material-symbols-outlined" style={{ color: `${value}` }}>
+                  <span className="material-symbols-outlined" style={{ color: `${value}` }}>
                      format_paint
                   </span>
                   <input type="radio" name="recolor" value={value} />

@@ -31,7 +31,7 @@ function Level() {
          <div>You are at level {level} </div>
          <LevelMenu />
          {options && <Board options={options} />}
-         <Controls />
+         {options && <Controls options={options} />}
          <SolutionArea />
       </>
    )
