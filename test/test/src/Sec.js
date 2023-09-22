@@ -2,8 +2,7 @@ import { useState } from "react"
 import Item from "./Item";
 
 function Sec(props){
-         
-      console.log(props)
+
       let arr=[];
       if (props.options){
             let str = props.options.board;

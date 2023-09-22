@@ -21,15 +21,16 @@ function App() {
 
   //useState()
   const [user, setUser] = useState(false);
-  const [board, setBoard] = useState();
-  const [colors, setColors] = useState();
-  const [directions, setDirections] = useState();
-  const [functions, setFunctions] = useState();
-  const [painters, setPainters] = useState();
-  const [solutions, setSolutions] = useState();
+  // const [board, setBoard] = useState();
+  // const [colors, setColors] = useState();
+  // const [directions, setDirections] = useState();
+  // const [functions, setFunctions] = useState();
+  // const [painters, setPainters] = useState();
+  // const [solutions, setSolutions] = useState();
 
   //useContext()
-  const contextValues = {board, setBoard, colors, setColors, directions, setDirections, functions, setFunctions,painters, setPainters, solutions, setSolutions};
+  const contextValues = {user, setUser};
+  // board, setBoard, colors, setColors, directions, setDirections, functions, setFunctions,painters, setPainters, solutions, setSolutions
 
   useEffect(()=>{
     //axios request is temporary and bad, just to remember that it is needed here.
@@ -44,10 +45,6 @@ function App() {
       <BrowserRouter>
           <MainContext.Provider value={contextValues}>
             <Header />
-            {colors}
-            {directions}
-            {functions}
-            {painters}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

@@ -13,36 +13,16 @@ import SolutionArea from "../components/LevelComponents/SolutionArea";
 
 function Level() {
 
-   const { board, setBoard, colors, setColors, directions, setDirections, painters, setPainters, functions, setFunctions, solutions, setSolutions } = useContext(MainContext);
-
    const [options, setOptions] = useState();
+
    const { level } = useParams();
 
    useEffect(() => {
       axios.get("http://localhost:8000/api/level/" + level)
-         .then(resp => {
-            // console.log(resp);
-            // setOptions(JSON.stringify(resp.data));
-            setBoard( JSON.stringify(resp.data.board));
-            setColors( JSON.stringify(resp.data.colors));
-            setDirections( JSON.stringify(resp.data.directions));
-            setPainters( JSON.stringify(resp.data.painters));
-            setFunctions( JSON.stringify(resp.data.functions));
-            setSolutions( JSON.stringify(resp.data.solutions));
-         })
+         .then(resp => setOptions(resp.data))
          .catch(error => ("klaidele" + error))
 
    }, [])
-
-   // function spreadData(options) {
-   //    const obj = (options);
-   //    setBoard(obj.board);
-   //    setColors(obj.colors);
-   //    setDirections(obj.directions);
-   //    setPainters(obj.painters);
-   //    setFunctions(obj.functions);
-   //    setSolutions(obj.solutions);
-   // }
 
    return (
       <>
@@ -50,10 +30,9 @@ function Level() {
          <h2>&lt;Level&gt; page</h2>
          <div>You are at level {level} </div>
          <LevelMenu />
-         <Board board={board} />
-         <Controls colors={colors} directions={directions} painters={painters} functions={functions} />
-         <SolutionArea solutions={solutions} />
-
+         {options && <Board options={options} />}
+         <Controls />
+         <SolutionArea />
       </>
    )
 }
