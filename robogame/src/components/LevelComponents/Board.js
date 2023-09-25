@@ -1,13 +1,22 @@
-import Item from "../elements/Item";
+import { useContext, useEffect } from "react";
+import Item from "../../elements/Item";
+import MainContext from "../../context/MainContext";
+
 
 function Board(props) {
 
-   let board = props.board;
-
-   for (let index in board) {
-      for (let i in board[index]) {
-         if (board[index][i].length > 5) break; // nedidelė apsauga
-         board[index].splice(i, 1, codeToClasses(board[index][i]));
+   let arr = [];
+   if (props.options) {
+      let str = props.options.board;
+      arr = str.split("~");
+      arr.map((value, index) => {
+         arr[index] = value.split("-")
+      })
+      for (let index in arr) {
+         for (let i in arr[index]) {
+            if (arr[index][i].length > 5) break; // nedidelė apsauga
+            arr[index].splice(i, 1, codeToClasses(arr[index][i]));
+         }
       }
    }
 
@@ -50,17 +59,16 @@ function Board(props) {
 
       return result;
    }
-   
+
    return (
       <>
          <div>
-            <h2>
-               &lt;Border&gt; komponentas
-            </h2>
-
+            <h3>
+               &lt;Board&gt; component
+            </h3>
             <table className="board">
                <tbody>
-                  {board && board.map((value, index) => (
+                  {arr.map((value, index) => (
                      <tr key={index}>
                         {value.map((value, index) => (
                            <td key={"td" + index} className={value}>
@@ -73,7 +81,6 @@ function Board(props) {
                   )}
                </tbody>
             </table>
-
          </div>
       </>
    )

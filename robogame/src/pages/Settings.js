@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
-import SelectableButtons from "./selectableButtons";
-import valdymas from "./valdymas.txt"  //reik4s keisti į DB
+import SelectableButtons from  '../elements/selectableButtons';
+import MainContext from "../context/MainContext";
 
 /*
 Čia turi būti tokia logika:
@@ -17,36 +17,22 @@ import valdymas from "./valdymas.txt"  //reik4s keisti į DB
       5.a. nuskaitomi elementai sudedami į masyvą/stringą/...
 */
 
-function Options(props) {
-   const data = props.options;
-   console.log("perduotos opcijos",data);
+function Settings() {
+   // const data = props.options;
 
-   const [colors, setColors] = useState([]);
-   const [directions, setDirections] = useState([]);
-   const [functions, setFunctions] = useState([]);
-   const [painters, setPainters] = useState([]);
-   
-  useEffect(()=>{
-   if (data) {
-      setColors(data.colors);
-      setDirections(data.directions);
-      setFunctions(data.functions);
-      setPainters(data.painters);
-   }
-   
-  },[])
+   const {field, setField, colors, setColors, directions, setDirections, functions, setFunctions,painters, setPainters} = useContext(MainContext)
 
   //cia reikalinga funkcija nuskaitanti paklikinim1 ant mygtuko ir perduodanti jo duomenis i virsu <Input>
 
    return (
       <>
-         Opcijos
-         {/* {colors.map((value, index)=>(
+         <h2 style={{color:'red'}}>&lt;Settings&gt; should be visible only to connected users</h2>
+         {colors.map((value, index)=>(
             <div key={index}>
                {value}
             </div>
-         ))} */}
-         Options Propsu vieta
+         ))}
+         Settings Propsu vieta
          <h3>
             &lt;SelectableButtons&gt; komponentas
          </h3>
@@ -57,7 +43,7 @@ function Options(props) {
          {directions && directions.map((value, index) => (
             <div key={index}>
                <div className="selection">
-                  <span class="material-symbols-outlined">
+                  <span className="material-symbols-outlined">
                      {value}
                   </span>
                   <input type="radio" name="action" value="go" />
@@ -80,7 +66,7 @@ function Options(props) {
          {painters && painters.map((value, index) => (
             <div key={index}>
                <div className="selection">
-                  <span class="material-symbols-outlined" style={{ color: `${value}` }}>
+                  <span className="material-symbols-outlined" style={{ color: `${value}` }}>
                      format_paint
                   </span>
                   <input type="radio" name="recolor" value={value} />
@@ -102,4 +88,4 @@ function Options(props) {
    )
 }
 
-export default Options
+export default Settings

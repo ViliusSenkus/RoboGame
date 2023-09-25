@@ -1,29 +1,44 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from 'axios';
 
 //Contexts (parameters)
 import MainContext from './context/MainContext';
 
 //Pages
-import Wellcome from "./pages/Wellcome";
-import E404 from "./pages/E404";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signin from "./pages/Signin";
+import HighScores from "./pages/HighScores";
 import Level from "./pages/Level";
+import Settings from "./pages/Settings";
+import E404 from "./pages/E404";
 
 // Components
 import Header from "./components/Header";
-import Input from "./components/Options";
-import b1 from "./boardsData/b1.txt"
-
-
 
 function App() {
 
-  const [field, setField] = useState([]);
-  // const [level, setLevel] = useState(0);
-  // const [levelResult, setLevelResult] = useState(false);
-  
+  //useState()
+  const [user, setUser] = useState(false);
+  // const [board, setBoard] = useState();
+  // const [colors, setColors] = useState();
+  // const [directions, setDirections] = useState();
+  // const [functions, setFunctions] = useState();
+  // const [painters, setPainters] = useState();
+  // const [solutions, setSolutions] = useState();
 
-  const contextValues = {field, setField};
+  //useContext()
+  const contextValues = {user, setUser};
+  // board, setBoard, colors, setColors, directions, setDirections, functions, setFunctions,painters, setPainters, solutions, setSolutions
+
+  useEffect(()=>{
+    //axios request is temporary and bad, just to remember that it is needed here.
+    axios.get('http:://localhost:8000/api/user')
+    .then(resp=>console.log(resp.data))
+    .catch(error=>console.log(error))
+    .finally(setUser(true));
+  },[])
 
   return (
     <div>
@@ -31,9 +46,12 @@ function App() {
           <MainContext.Provider value={contextValues}>
             <Header />
             <Routes>
-              <Route path="/" element={<Wellcome />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/highscores" element={<HighScores />} />
               <Route path="/level/:level" element={<Level />} />  
-              <Route path="options" element={<Input />} />
+              <Route path="/settings" element={<Settings />} /> 
               <Route path = "*" element={<E404 />} />
             </Routes>
           </MainContext.Provider>
