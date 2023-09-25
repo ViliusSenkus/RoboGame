@@ -10,6 +10,14 @@ import Board from "../components/LevelComponents/Board";
 import Controls from "../components/LevelComponents/Controls";
 import SolutionArea from "../components/LevelComponents/SolutionArea";
 
+/*
+   Mygtukų ir funkcijų elementų veikimas
+      a. pasirenkamas elementas į kūrį bus dedami mygtukai;
+      b. pasirenkami mygtukai automatiškai dedami į elementą;
+   Start mygtukas - paleidžia funkcijos vykdymą:
+      5.a. nuskaitomi elementai sudedami į masyvą/stringą/...
+*/
+
 
 function Level() {
 
@@ -26,7 +34,6 @@ function Level() {
 
    return (
       <>
-         {/* {options && spreadData(options)} */}
          <h2>&lt;Level&gt; page</h2>
          <div>You are at level {level} </div>
          <LevelMenu />
