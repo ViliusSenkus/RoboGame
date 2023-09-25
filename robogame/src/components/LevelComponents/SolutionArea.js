@@ -1,23 +1,22 @@
 import { useEffect } from 'react';
+import Answer from '../../elements/Answer';
 
 function SolutionArea(props){
       
-      let data = props.functions;
-      // useEffect(()=>{
-      //       data = ;
-      // },[])
-     
-      
+      let data = [];
+      console.log(data); 
+      if (props.options.solutions){
+            data = props.options.solutions.split(",");    
+             
+      }
 
 return(
       <>
-            <table className="functions">
+            <table className="solutions">
                <tbody>
                   {data ? data.map((value, index) => (
-                     <tr key={index}>
-                           <td>
-                              {value}
-                           </td>
+                        <tr key={index}>
+                     <Answer  numOfTd={value} />
                      </tr>
                   )
                   ) : "Funkcijos Kraunasi"}
@@ -28,4 +27,4 @@ return(
 )
 }
 
-export default SolutionArea
+export default SolutionArea;

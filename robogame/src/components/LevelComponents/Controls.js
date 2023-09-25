@@ -4,11 +4,17 @@ import Item from '../../elements/Item';
 
 function Controls(props) {
 
+  //declaring variables to prevent code breaking, till props will be loaded
   let arrColors = [];
   let arrPainters = [];
+  let arrFunctions = [];
+  let arrDirections =[];
+
   if (props.options) {
     arrColors = props.options.colors.split("");
     arrPainters = props.options.painters.split("");
+    arrFunctions = props.options.functions.split(",");
+    arrDirections = props.options.directions.split(",");
 
     for (let i in arrColors) {
       arrColors.splice(i, 1, codeColorsToClasses(arrColors[i]))
@@ -32,6 +38,11 @@ function Controls(props) {
   }
 
   return (
+    <>
+    <h3>
+               &lt;Controls&gt; component
+            </h3>
+            
     <table className="board">
       <tbody>
         {/* COLORS */}
@@ -41,7 +52,6 @@ function Controls(props) {
         <tr>
           {arrColors.map((value, index) => (
             <td key={index} className={`selection color-${value}`}>
-              {{ Item } && <Item classes={value} />}
             </td>
           )
           )}
@@ -53,13 +63,37 @@ function Controls(props) {
         <tr>
           {arrPainters.map((value, index) => (
             <td key={index} className={`selection color-${value}`}>
-              {{ Item } && <Item classes={value} />}
+            </td>
+          )
+          )}
+        </tr>
+        {/* FUNCTIONS */}
+        <tr>
+          <td colspan={arrFunctions.length}>Functions</td>
+        </tr>
+        <tr>
+          {arrFunctions.map((value, index) => (
+            <td key={index}>
+              {value}
+            </td>
+          )
+          )}
+        </tr>
+        {/* DIRECTIONS */}
+        <tr>
+          <td colspan={arrDirections.length}>Directions</td>
+        </tr>
+        <tr>
+          {arrDirections.map((value, index) => (
+            <td key={index} className={`selection color-${value}`}>
+              {value}
             </td>
           )
           )}
         </tr>
       </tbody>
     </table>
+    </>
   )
 }
 

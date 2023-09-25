@@ -32,7 +32,7 @@ function Level() {
          <LevelMenu />
          {options && <Board options={options} />}
          {options && <Controls options={options} />}
-         <SolutionArea />
+         {options && <SolutionArea options={options} />}
       </>
    )
 }
